@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sorteio de Nomes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <h1>🎲 Sorteio de Nomes</h1>
+    <p>Adicione nomes, cada um recebe um número. Depois é só sortear!</p>
+  </header>
+
+  <main class="layout">
+
+    <!-- Cadastro de nomes -->
+    <section class="card area-cadastro" aria-labelledby="titulo-cadastro">
+      <h2 id="titulo-cadastro">Adicionar nome</h2>
+      <form id="form-nome" autocomplete="off" novalidate>
+        <label for="campo-nome">Nome</label>
+        <div class="linha-form">
+          <input id="campo-nome" type="text" maxlength="80"
+                 placeholder="Ex.: Samuel Araújo" aria-describedby="erro-nome">
+          <button type="submit" class="btn btn-primario">Adicionar</button>
+        </div>
+        <p id="erro-nome" class="erro" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- Sorteio -->
+    <section class="card area-sorteio" aria-labelledby="titulo-sorteio">
+      <h2 id="titulo-sorteio">Sorteio</h2>
+
+      <div id="resultado" class="resultado">
+        <span id="res-numero" class="resultado-numero">–</span>
+        <span id="res-nome" class="resultado-nome">Aguardando sorteio</span>
+      </div>
+
+      <!-- Região lida por leitores de tela (anuncia só o resultado final) -->
+      <p id="anuncio" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+
+      <button id="btn-sortear" type="button" class="btn btn-sorteio" disabled>Sortear</button>
+
+      <details class="historico">
+        <summary>Histórico de sorteios (<span id="hist-total">0</span>)</summary>
+        <ol id="lista-historico"></ol>
+      </details>
+    </section>
+
+    <!-- Tabela em tempo real -->
+    <section class="card area-tabela" aria-labelledby="titulo-tabela">
+      <div class="cabecalho-tabela">
+        <h2 id="titulo-tabela">Nomes cadastrados</h2>
+        <span id="total" class="contador">0 nomes</span>
+      </div>
+
+      <div class="tabela-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col" class="col-num">Nº</th>
+              <th scope="col">Nome</th>
+              <th scope="col" class="col-acao"><span class="sr-only">Ações</span></th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela"></tbody>
+        </table>
+      </div>
+
+      <button id="btn-limpar" type="button" class="btn btn-perigo" disabled>Limpar tudo</button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
